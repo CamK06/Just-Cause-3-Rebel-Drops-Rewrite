@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>JustCauseRebelDrops</RootNamespace>
+    <AssemblyName>JustCauseRebelDrops</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="NativeUI">
+      <HintPath>..\..\..\..\C# Dependencies\NativeUI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <RootNamespace>JustCauseRebelDrops</RootNamespace>
-    <AssemblyName>JustCauseRebelDrops</AssemblyName>
-  </PropertyGroup>
-
-</Project>
