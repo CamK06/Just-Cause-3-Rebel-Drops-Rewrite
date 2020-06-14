@@ -1,12 +1,20 @@
 ﻿using System;
+
 using GTA;
+using GTA.Native;
+using NativeUI;
+
+using NAudio;
 
 namespace JustCauseRebelDrops
 {
     public class Main : Script
     {
+        internal static bool PlaySound = true;
+
         public Main()
         {
+            Util.VerifyFileStructure();
             Tick += OnTick;
         }
 

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Just Cause 3 Rebel Drops Rewrite", "Just Cause 3 Rebel Drops Rewrite\Just Cause 3 Rebel Drops Rewrite.csproj", "{2C2F73E3-3D02-4BA4-8972-4818EEC123EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JustCauseRebelDrops", "Just Cause 3 Rebel Drops Rewrite\JustCauseRebelDrops.csproj", "{2C2F73E3-3D02-4BA4-8972-4818EEC123EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

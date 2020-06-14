@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2" />
   </ItemGroup>
 
@@ -14,6 +15,10 @@
     <Reference Include="NativeUI">
       <HintPath>..\..\..\..\C# Dependencies\NativeUI.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>..\..\..\..\C# Dependencies\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
 </Project>
