@@ -11,6 +11,8 @@ namespace JustCauseRebelDrops
         public Main()
         {
             Util.VerifyFileStructure();
+            if (PlaySound) AudioManager.InitSounds();
+
             Tick += OnTick;
         }
 
