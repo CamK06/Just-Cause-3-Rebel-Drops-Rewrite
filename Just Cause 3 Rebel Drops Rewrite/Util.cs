@@ -6,6 +6,9 @@ namespace JustCauseRebelDrops
 {
     internal class Util
     {
+        /// <summary>
+        /// Verifies that all of the mod's files that it depends on are there
+        /// </summary>
         public static void VerifyFileStructure()
         {
             if (!Directory.Exists(Globals.ResourceDir)) Directory.CreateDirectory(Globals.ResourceDir);

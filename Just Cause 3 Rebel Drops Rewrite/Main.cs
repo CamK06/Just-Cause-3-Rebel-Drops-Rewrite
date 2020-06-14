@@ -1,10 +1,6 @@
 ﻿using System;
 
 using GTA;
-using GTA.Native;
-using NativeUI;
-
-using NAudio;
 
 namespace JustCauseRebelDrops
 {
@@ -20,7 +16,7 @@ namespace JustCauseRebelDrops
 
         private void OnTick(object sender, EventArgs e)
         {
-            
+               
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace JustCauseRebelDrops
 {
+    /// <summary>
+    /// All of the commonly used objects, mostly directories though
+    /// </summary>
     internal class Globals
     {
         internal static string ResourceDir = "scripts\\JustCauseRebelDrops";
