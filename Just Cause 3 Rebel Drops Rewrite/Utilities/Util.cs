@@ -7,7 +7,7 @@ namespace JustCauseRebelDrops
     internal class Util
     {
         /// <summary>
-        /// Verifies that all of the mod's files that it depends on are there
+        /// Verifies that all of the mod's files are there
         /// </summary>
         public static void VerifyFileStructure()
         {
@@ -22,7 +22,11 @@ namespace JustCauseRebelDrops
             {
                 VehicleConfig vehicles = new VehicleConfig();
                 File.WriteAllText(Globals.VehicleFile, JsonConvert.SerializeObject(vehicles, Formatting.Indented));
-
+            }
+            if (!File.Exists(Globals.WeaponFile))
+            {
+                WeaponConfig weapons = new WeaponConfig();
+                File.WriteAllText(Globals.WeaponFile, JsonConvert.SerializeObject(weapons, Formatting.Indented));
             }
             if (!File.Exists(Globals.HitSound)) Main.PlaySound = false;
             if (!File.Exists(Globals.CallSound)) Main.PlaySound = false;

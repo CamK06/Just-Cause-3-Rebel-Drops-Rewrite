@@ -1,10 +1,14 @@
-﻿namespace JustCauseRebelDrops.Classes
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace JustCauseRebelDrops.Classes
 {
     internal class Vehicle
     {
-        public string modelName { get; set; }
-        public string displayName { get; set; }
-        public VehicleType type { get; set; }
+        public string ModelName { get; set; }
+        public string DisplayName { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public VehicleType Type { get; set; }
     }
 
     internal enum VehicleType

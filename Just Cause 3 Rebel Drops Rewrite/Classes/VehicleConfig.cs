@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 
 namespace JustCauseRebelDrops.Classes
 {
@@ -6,10 +8,14 @@ namespace JustCauseRebelDrops.Classes
     {
         public List<Vehicle> CivilianVehicles { get; set; } = new List<Vehicle>();
         public List<Vehicle> MilitaryVehicles { get; set; } = new List<Vehicle>();
-    }
 
-    internal enum VehicleCategory
-    {
-        Civilian, Military
+        /// <summary>
+        /// Load the vehicle config
+        /// </summary>
+        /// <returns>VehicleConfig from json</returns>
+        public static VehicleConfig Load()
+        {
+            return JsonConvert.DeserializeObject<VehicleConfig>(File.ReadAllText(Globals.VehicleFile));
+        }
     }
 }
