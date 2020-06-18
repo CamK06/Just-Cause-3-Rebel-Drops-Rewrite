@@ -46,26 +46,6 @@ namespace JustCauseRebelDrops
                 Type = Classes.VehicleType.Plane
             },
 
-            // Military jets
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "Lazer",
-                ModelName = "lazer",
-                Type = Classes.VehicleType.Plane
-            },
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "Titan",
-                ModelName = "titan",
-                Type = Classes.VehicleType.Plane
-            },
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "Hydra",
-                ModelName = "hydra",
-                Type = Classes.VehicleType.Plane
-            },
-
             // Civilian helis
             new JustCauseRebelDrops.Classes.DropVehicle()
             {
@@ -95,20 +75,6 @@ namespace JustCauseRebelDrops
             {
                 DisplayName = "Skylift",
                 ModelName = "skylift",
-                Type = Classes.VehicleType.Heli
-            },
-
-            // Military Helis
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "Cargobob",
-                ModelName = "cargobob",
-                Type = Classes.VehicleType.Heli
-            },
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "Buzzard",
-                ModelName = "buzzard",
                 Type = Classes.VehicleType.Heli
             },
         };
@@ -163,26 +129,6 @@ namespace JustCauseRebelDrops
                 ModelName = "bus",
                 Type = Classes.VehicleType.Land
             },
-
-            // Military
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "Rhino",
-                ModelName = "rhino",
-                Type = Classes.VehicleType.Land
-            },
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "APC",
-                ModelName = "apc",
-                Type = Classes.VehicleType.Land
-            },
-            new JustCauseRebelDrops.Classes.DropVehicle()
-            {
-                DisplayName = "Insurgent",
-                ModelName = "insurgent",
-                Type = Classes.VehicleType.Land
-            }
         };
 
         internal static List<JustCauseRebelDrops.Classes.DropVehicle> DefaultSea = new List<JustCauseRebelDrops.Classes.DropVehicle>()
@@ -222,9 +168,68 @@ namespace JustCauseRebelDrops
                 DisplayName = "Tug",
                 ModelName = "tug",
                 Type = Classes.VehicleType.Sea
+            }
+        };
+
+        internal static List<JustCauseRebelDrops.Classes.DropVehicle> DefaultMilAir = new List<JustCauseRebelDrops.Classes.DropVehicle>()
+        {
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "Lazer",
+                ModelName = "lazer",
+                Type = Classes.VehicleType.Plane
+            },
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "Titan",
+                ModelName = "titan",
+                Type = Classes.VehicleType.Plane
+            },
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "Hydra",
+                ModelName = "hydra",
+                Type = Classes.VehicleType.Plane
             },
 
-            // Military
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "Cargobob",
+                ModelName = "cargobob",
+                Type = Classes.VehicleType.Heli
+            },
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "Buzzard",
+                ModelName = "buzzard",
+                Type = Classes.VehicleType.Heli
+            },
+        };
+
+        internal static List<JustCauseRebelDrops.Classes.DropVehicle> DefaultMilLand = new List<JustCauseRebelDrops.Classes.DropVehicle>()
+        {
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "Rhino",
+                ModelName = "rhino",
+                Type = Classes.VehicleType.Land
+            },
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "APC",
+                ModelName = "apc",
+                Type = Classes.VehicleType.Land
+            },
+            new JustCauseRebelDrops.Classes.DropVehicle()
+            {
+                DisplayName = "Insurgent",
+                ModelName = "insurgent",
+                Type = Classes.VehicleType.Land
+            }
+        };
+
+        internal static List<JustCauseRebelDrops.Classes.DropVehicle> DefaultMilSea = new List<JustCauseRebelDrops.Classes.DropVehicle>()
+        {
             new JustCauseRebelDrops.Classes.DropVehicle()
             {
                 DisplayName = "Kraken",
@@ -232,5 +237,6 @@ namespace JustCauseRebelDrops
                 Type = Classes.VehicleType.Sea
             }
         };
+
     }
 }

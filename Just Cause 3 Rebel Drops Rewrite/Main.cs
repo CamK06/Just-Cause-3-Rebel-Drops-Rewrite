@@ -65,8 +65,6 @@ namespace JustCauseRebelDrops
             Vector3 ContainerPos = Game.Player.Character.Position + Game.Player.Character.UpVector * 75f + Game.Player.Character.ForwardVector * 10f;
 
             // Vehicle spawning and adjustments
-            Vehicle NewVehicle = World.CreateVehicle(VModel, Vector3.Zero);
-            NewVehicle.IsPersistent = true;
             Vehicle CargoPlane = World.CreateVehicle(CModel, PlanePos);
             CargoPlane.Heading = (Game.Player.Character.Position - CargoPlane.Position).ToHeading();
             VehicleDoor CargoDoor = CargoPlane.Doors.ToArray().FirstOrDefault(x => x.Index == VehicleDoorIndex.Trunk);
@@ -117,7 +115,7 @@ namespace JustCauseRebelDrops
             Container.Delete();
 
             // Vehicle moving
-            NewVehicle.Position = SpawnPos;
+            Vehicle NewVehicle = World.CreateVehicle(VModel, SpawnPos);
             NewVehicle.PlaceOnGround();
             NewVehicle.IsPersistent = false;
 

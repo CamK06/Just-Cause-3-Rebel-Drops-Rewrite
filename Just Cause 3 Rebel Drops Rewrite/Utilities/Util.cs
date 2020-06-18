@@ -25,6 +25,9 @@ namespace JustCauseRebelDrops
                 vehicles.CivilianVehicles.AddRange(Globals.DefaultAir);
                 vehicles.CivilianVehicles.AddRange(Globals.DefaultLand);
                 vehicles.CivilianVehicles.AddRange(Globals.DefaultSea);
+                vehicles.MilitaryVehicles.AddRange(Globals.DefaultMilAir);
+                vehicles.MilitaryVehicles.AddRange(Globals.DefaultMilLand);
+                vehicles.MilitaryVehicles.AddRange(Globals.DefaultMilSea);
                 File.WriteAllText(Globals.VehicleFile, JsonConvert.SerializeObject(vehicles, Formatting.Indented));
             }
             if (!File.Exists(Globals.WeaponFile))
