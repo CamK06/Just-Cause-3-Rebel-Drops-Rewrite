@@ -1,4 +1,5 @@
 ﻿using GTA;
+using GTA.UI;
 using JustCauseRebelDrops.Classes;
 using NativeUI;
 using System;
@@ -24,7 +25,7 @@ namespace JustCauseRebelDrops.Utilities
         static UIMenu MilAir = null;
         static UIMenu MilLand = null;
         static UIMenu MilSea = null;
-        static List<UIMenuItem> Vehicles = new List<UIMenuItem>();
+        static List<DropVehicle> CustomVehicles = new List<DropVehicle>();
 
         /// <summary>
         /// Initialize all of the menus
@@ -98,6 +99,39 @@ namespace JustCauseRebelDrops.Utilities
                 }
             }
 
+            // Custom vehicles
+            foreach(CustomVehicleConfig CustomVehConfig in Main.CustomVehicleConfigs)
+            {
+                UIMenu CustomMenu = MainPool.AddSubMenu(VehicleMenu, CustomVehConfig.CategoryName);
+
+                foreach (DropVehicle veh in CustomVehConfig.Vehicles)
+                {
+                    switch (veh.Type)
+                    {
+                        case VehicleType.Heli:
+                        case VehicleType.Plane:
+                            var VehicleItem = new UIMenuItem(veh.DisplayName);
+                            VehicleItem.Activated += ItemSelect;
+                            CustomMenu.AddItem(VehicleItem);
+                            break;
+
+                        case VehicleType.Land:
+                            var LandVehicleItem = new UIMenuItem(veh.DisplayName);
+                            LandVehicleItem.Activated += ItemSelect;
+                            CustomMenu.AddItem(LandVehicleItem);
+                            break;
+
+                        case VehicleType.Sea:
+                            var SeaVehicleItem = new UIMenuItem(veh.DisplayName);
+                            SeaVehicleItem.Activated += ItemSelect;
+                            CustomMenu.AddItem(SeaVehicleItem);
+                            break;
+                    }
+
+                    CustomVehicles.Add(veh);
+                }
+            }
+
             MainPool.RefreshIndex();
         }
 
@@ -106,7 +140,7 @@ namespace JustCauseRebelDrops.Utilities
             DropVehicle VehicleToDrop = null;
             VehicleToDrop = Main.VehConfig.CivilianVehicles.FirstOrDefault(x => x.DisplayName.ToLower() == Item.Text.ToLower());
             if (VehicleToDrop == null) VehicleToDrop = Main.VehConfig.MilitaryVehicles.FirstOrDefault(x => x.DisplayName.ToLower() == Item.Text.ToLower());
-            if (VehicleToDrop == null) VehicleToDrop = Main.CustomVehicleConfigs.FirstOrDefault(x => x.Vehicles.FirstOrDefault(y => y.DisplayName.ToLower() == Item.Text.ToLower()) != null).Vehicles.FirstOrDefault(x => x.DisplayName.ToLower() == Item.Text.ToLower()); // Basically check for a custom config that has the vehicle
+            if (VehicleToDrop == null) VehicleToDrop = CustomVehicles.FirstOrDefault(x => x.DisplayName.ToLower() == Item.Text.ToLower());
             if (VehicleToDrop == null) return;
 
             MainPool.CloseAllMenus();

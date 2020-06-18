@@ -10,6 +10,7 @@ using GTA.UI;
 using JustCauseRebelDrops.Classes;
 using JustCauseRebelDrops.Utilities;
 using NativeUI;
+using Newtonsoft.Json;
 
 namespace JustCauseRebelDrops
 {
@@ -44,8 +45,6 @@ namespace JustCauseRebelDrops
             {
                 if (e.KeyCode == Config.DropMenu) // Our menu on/off switch
                     MenuManager.ShowMenu();
-                else if (e.KeyCode == Keys.K)
-                    CallVehicleDrop("sanchez");
             };
 
             Notification.Show("~y~Just Cause Rebel Drops~w~ successfully loaded!");
@@ -57,7 +56,11 @@ namespace JustCauseRebelDrops
             if(PlaySound) AudioManager.PlaySound(DropSound.call);
             Model VModel = new Model(VehicleModel);
             Model CModel = new Model(Config.PlaneModel);
-            if (!Function.Call<bool>(Hash.IS_MODEL_IN_CDIMAGE, VModel.Hash) && !Function.Call<bool>(Hash.IS_MODEL_IN_CDIMAGE, CModel.Hash)) return;
+            if (!VModel.IsValid || !CModel.IsValid)
+            {
+                AudioManager.StopSound(DropSound.call);
+                return;
+            }
 
             // Drop continuation. This is only reached if the models were valid
 

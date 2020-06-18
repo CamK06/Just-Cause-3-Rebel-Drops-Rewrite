@@ -1,6 +1,7 @@
 ﻿using GTA.Math;
 using JustCauseRebelDrops.Classes;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.IO;
 
 namespace JustCauseRebelDrops
@@ -37,6 +38,19 @@ namespace JustCauseRebelDrops
             }
             if (!File.Exists(Globals.HitSound)) Main.PlaySound = false;
             if (!File.Exists(Globals.CallSound)) Main.PlaySound = false;
+            if(!File.Exists(Globals.CustomVehicleDir + "\\CustomTemplate.json.n")) File.WriteAllText(Globals.CustomVehicleDir + "\\CustomTemplate.json.n", JsonConvert.SerializeObject(new CustomVehicleConfig()
+            {
+                CategoryName = "Example",
+                Vehicles = new List<DropVehicle>()
+                {
+                    new DropVehicle()
+                    {
+                        DisplayName = "Mallard Example",
+                        ModelName = "stunt",
+                        Type = VehicleType.Plane
+                    }
+                }
+            }, Formatting.Indented));
         }
 
         /// <summary>
