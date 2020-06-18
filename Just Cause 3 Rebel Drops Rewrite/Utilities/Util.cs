@@ -3,6 +3,7 @@ using JustCauseRebelDrops.Classes;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace JustCauseRebelDrops
 {
@@ -51,6 +52,25 @@ namespace JustCauseRebelDrops
                     }
                 }
             }, Formatting.Indented));
+            if(!File.Exists(Globals.CustomVehicleDir + "\\CustomTemplate.xml.n"))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(CustomVehicleConfig));
+                FileStream stream = new FileStream(Globals.CustomVehicleDir + "\\CustomTemplate.xml.n", FileMode.OpenOrCreate);
+                serializer.Serialize(stream, new CustomVehicleConfig()
+                {
+                    CategoryName = "Example",
+                    Vehicles = new List<DropVehicle>()
+                    {
+                        new DropVehicle()
+                        {
+                            DisplayName = "Mallard Example",
+                            ModelName = "stunt",
+                            Type = VehicleType.Plane
+                        }
+                    }
+                });
+                stream.Close();
+            }
         }
 
         /// <summary>

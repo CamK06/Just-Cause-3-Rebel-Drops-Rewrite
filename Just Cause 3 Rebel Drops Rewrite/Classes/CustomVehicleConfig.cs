@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace JustCauseRebelDrops.Classes
 {
-    internal class CustomVehicleConfig
+    public class CustomVehicleConfig
     {
         public string CategoryName { get; set; }
         public List<DropVehicle> Vehicles { get; set; }
@@ -16,7 +17,16 @@ namespace JustCauseRebelDrops.Classes
         /// <returns>CustomVehicleConfig from json</returns>
         public static CustomVehicleConfig LoadFromFile(string FileToLoad)
         {
-            return JsonConvert.DeserializeObject<CustomVehicleConfig>(File.ReadAllText(FileToLoad));
+            if (FileToLoad.ToLower().EndsWith(".json")) return JsonConvert.DeserializeObject<CustomVehicleConfig>(File.ReadAllText(FileToLoad));
+            else if (FileToLoad.ToLower().EndsWith(".xml"))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(CustomVehicleConfig));
+                FileStream stream = new FileStream(FileToLoad, FileMode.Open);
+                CustomVehicleConfig config = (CustomVehicleConfig)serializer.Deserialize(stream);
+                stream.Close();
+                return config;
+            }
+            else return new CustomVehicleConfig();
         }
     }
 }

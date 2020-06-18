@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace JustCauseRebelDrops.Classes
 {
-    internal class DropVehicle
+    public class DropVehicle
     {
         public string ModelName { get; set; }
         public string DisplayName { get; set; }
@@ -11,7 +11,7 @@ namespace JustCauseRebelDrops.Classes
         public VehicleType Type { get; set; }
     }
 
-    internal enum VehicleType
+    public enum VehicleType
     {
         Land, Plane, Heli, Sea
     }

@@ -36,6 +36,8 @@ namespace JustCauseRebelDrops
             VehConfig = VehicleConfig.Load();
             foreach (string file in Directory.GetFiles(Globals.CustomVehicleDir, "*.json"))
                 CustomVehicleConfigs.Add(CustomVehicleConfig.LoadFromFile(file));
+            foreach (string file in Directory.GetFiles(Globals.CustomVehicleDir, "*.xml"))
+                CustomVehicleConfigs.Add(CustomVehicleConfig.LoadFromFile(file));
             Config = ModConfig.Load();
             MenuManager.Init();
 
