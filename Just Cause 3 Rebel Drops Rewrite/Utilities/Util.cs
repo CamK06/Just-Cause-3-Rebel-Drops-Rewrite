@@ -1,4 +1,5 @@
-﻿using JustCauseRebelDrops.Classes;
+﻿using GTA.Math;
+using JustCauseRebelDrops.Classes;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -21,6 +22,9 @@ namespace JustCauseRebelDrops
             if (!File.Exists(Globals.VehicleFile))
             {
                 VehicleConfig vehicles = new VehicleConfig();
+                vehicles.CivilianVehicles.AddRange(Globals.DefaultAir);
+                vehicles.CivilianVehicles.AddRange(Globals.DefaultLand);
+                vehicles.CivilianVehicles.AddRange(Globals.DefaultSea);
                 File.WriteAllText(Globals.VehicleFile, JsonConvert.SerializeObject(vehicles, Formatting.Indented));
             }
             if (!File.Exists(Globals.WeaponFile))
@@ -30,6 +34,19 @@ namespace JustCauseRebelDrops
             }
             if (!File.Exists(Globals.HitSound)) Main.PlaySound = false;
             if (!File.Exists(Globals.CallSound)) Main.PlaySound = false;
+        }
+
+        /// <summary>
+        /// Used for the cargo plane positioning. I don't really understand how this works, only how to use it
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="x"></param>
+        /// <returns></returns>
+        public static Vector3 LerpByDistance(Vector3 A, Vector3 B, float x)
+        {
+            Vector3 P = x * Vector3.Normalize(B - A) + A;
+            return P;
         }
     }
 }

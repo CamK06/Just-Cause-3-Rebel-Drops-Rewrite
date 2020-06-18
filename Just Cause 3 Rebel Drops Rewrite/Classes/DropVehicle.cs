@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 
 namespace JustCauseRebelDrops.Classes
 {
-    internal class Vehicle
+    internal class DropVehicle
     {
         public string ModelName { get; set; }
         public string DisplayName { get; set; }

@@ -7,7 +7,7 @@ namespace JustCauseRebelDrops.Classes
     internal class CustomVehicleConfig
     {
         public string CategoryName { get; set; }
-        public List<Vehicle> Vehicles { get; set; }
+        public List<DropVehicle> Vehicles { get; set; }
 
         /// <summary>
         /// Loads a custom vehicle config file

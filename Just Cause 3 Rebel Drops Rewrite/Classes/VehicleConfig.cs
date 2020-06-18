@@ -6,8 +6,8 @@ namespace JustCauseRebelDrops.Classes
 {
     internal class VehicleConfig
     {
-        public List<Vehicle> CivilianVehicles { get; set; } = new List<Vehicle>();
-        public List<Vehicle> MilitaryVehicles { get; set; } = new List<Vehicle>();
+        public List<DropVehicle> CivilianVehicles { get; set; } = new List<DropVehicle>();
+        public List<DropVehicle> MilitaryVehicles { get; set; } = new List<DropVehicle>();
 
         /// <summary>
         /// Load the vehicle config

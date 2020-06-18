@@ -11,9 +11,9 @@ namespace JustCauseRebelDrops.Classes
         public List<Weapon> PrimaryWeapons { get; set; } = new List<Weapon>();
 
         /// <summary>
-        /// Load the vehicle config
+        /// Load the weapon config
         /// </summary>
-        /// <returns>VehicleConfig from json</returns>
+        /// <returns>WeaponConfig from json</returns>
         public static WeaponConfig Load()
         {
             return JsonConvert.DeserializeObject<WeaponConfig>(File.ReadAllText(Globals.WeaponFile));

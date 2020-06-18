@@ -12,6 +12,7 @@ namespace JustCauseRebelDrops.Classes
         public bool RequiresShift { get; set; } = true;
         public string PlaneModel { get; set; } = "lazer";
         public int VehicleCost { get; set; } = 0;
+        public bool FunMode { get; set; } = false;
 
         /// <summary>
         /// Load the modconfig
