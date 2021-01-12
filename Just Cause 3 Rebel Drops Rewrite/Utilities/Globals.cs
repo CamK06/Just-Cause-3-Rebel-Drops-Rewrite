@@ -233,7 +233,7 @@ namespace JustCauseRebelDrops
             new JustCauseRebelDrops.Classes.DropVehicle()
             {
                 DisplayName = "Kraken",
-                ModelName = "kraken",
+                ModelName = "submersible2",
                 Type = Classes.VehicleType.Sea
             }
         };
