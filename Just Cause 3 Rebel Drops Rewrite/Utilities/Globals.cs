@@ -18,6 +18,84 @@ namespace JustCauseRebelDrops
 
         internal static Model ContainerModel = new Model("prop_contr_03b_ld");
 
+        internal static List<Classes.Weapon> DefaultPrimary = new List<Classes.Weapon>()
+        {
+            new Classes.Weapon()
+            {
+                DisplayName = "Carbine Rifle",
+                Hash = PickupType.WeaponCarbineRifle,
+                Type = Classes.WeaponCategory.Primary
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "Assault Rifle",
+                Hash = PickupType.WeaponAssaultRifle,
+                Type = Classes.WeaponCategory.Primary
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "Pump Shotgun",
+                Hash = PickupType.WeaponPumpShotgun,
+                Type = Classes.WeaponCategory.Primary
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "MG",
+                Hash = PickupType.WeaponMG,
+                Type = Classes.WeaponCategory.Primary
+            }
+        };  
+
+        internal static List<Classes.Weapon> DefaultSecondary = new List<Classes.Weapon>()
+        {
+            new Classes.Weapon()
+            {
+                DisplayName = "Pistol",
+                Hash = PickupType.WeaponPistol,
+                Type = Classes.WeaponCategory.Sidearm
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "AP Pistol",
+                Hash = PickupType.WeaponAPPistol,
+                Type = Classes.WeaponCategory.Sidearm
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "Heavy Pistol",
+                Hash = PickupType.WeaponHeavyPistol,
+                Type = Classes.WeaponCategory.Sidearm
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "SNS Pistol",
+                Hash = PickupType.WeaponSNSPistol,
+                Type = Classes.WeaponCategory.Sidearm
+            }
+        };  
+
+        internal static List<Classes.Weapon> DefaultHeavy = new List<Classes.Weapon>()
+        {
+            new Classes.Weapon()
+            {
+                DisplayName = "RPG",
+                Hash = PickupType.WeaponRPG,
+                Type = Classes.WeaponCategory.Heavy
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "Grenade Launcher",
+                Hash = PickupType.WeaponGrenadeLauncher,
+                Type = Classes.WeaponCategory.Heavy
+            },
+            new Classes.Weapon()
+            {
+                DisplayName = "Minigun",
+                Hash = PickupType.WeaponMinigun,
+                Type = Classes.WeaponCategory.Heavy
+            }
+        };  
+
         internal static List<JustCauseRebelDrops.Classes.DropVehicle> DefaultAir = new List<JustCauseRebelDrops.Classes.DropVehicle>()
         {
             // Civilian jets

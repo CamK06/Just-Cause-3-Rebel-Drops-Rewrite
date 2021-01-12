@@ -30,6 +30,9 @@ namespace JustCauseRebelDrops.Utilities
         static NativeMenu MilAir = new NativeMenu("Air", "Air");
         static NativeMenu MilLand = new NativeMenu("Land", "Land");
         static NativeMenu MilSea = new NativeMenu("Sea", "Sea");
+        static NativeMenu HeavyWep = new NativeMenu("Heavy", "Heavy");
+        static NativeMenu PrimaryWep = new NativeMenu("Primary", "Primary");
+        static NativeMenu SideWep = new NativeMenu("Sidearm", "Sidearm");
         static List<DropVehicle> CustomVehicles = new List<DropVehicle>();
 
         /// <summary>
@@ -37,7 +40,10 @@ namespace JustCauseRebelDrops.Utilities
         /// </summary>
         public static void Init()
         {
-            WeaponsMenu.Add(new NativeItem("Weapons are not implemented yet."));
+            WeaponsMenu.AddSubMenu(PrimaryWep);
+            WeaponsMenu.AddSubMenu(SideWep);
+            WeaponsMenu.AddSubMenu(HeavyWep);
+
             CivilianMenu.AddSubMenu(CivAir);
             CivilianMenu.AddSubMenu(CivLand);
             CivilianMenu.AddSubMenu(CivSea);
@@ -49,6 +55,9 @@ namespace JustCauseRebelDrops.Utilities
             MainMenu.AddSubMenu(VehicleMenu);
             MainMenu.AddSubMenu(WeaponsMenu);
             
+            MainPool.Add(PrimaryWep);
+            MainPool.Add(SideWep);
+            MainPool.Add(HeavyWep);
             MainPool.Add(CivAir);
             MainPool.Add(CivLand);
             MainPool.Add(CivSea);
@@ -60,6 +69,30 @@ namespace JustCauseRebelDrops.Utilities
             MainPool.Add(VehicleMenu);
             MainPool.Add(WeaponsMenu);
             MainPool.Add(MainMenu);
+
+            // Heavy weapons
+            foreach(JustCauseRebelDrops.Classes.Weapon wep in Main.WepConfig.HeavyWeapons)
+            {
+                var WeaponItem = new NativeItem(wep.DisplayName);
+                WeaponItem.Activated += (sender, e) => DropWeapon(wep.Hash);
+                HeavyWep.Add(WeaponItem);
+            }
+
+            // Primary weapons
+            foreach(JustCauseRebelDrops.Classes.Weapon wep in Main.WepConfig.PrimaryWeapons)
+            {
+                var WeaponItem = new NativeItem(wep.DisplayName);
+                WeaponItem.Activated += (sender, e) => DropWeapon(wep.Hash);
+                PrimaryWep.Add(WeaponItem);
+            }
+
+            // Side weapons
+            foreach(JustCauseRebelDrops.Classes.Weapon wep in Main.WepConfig.SideWeapons)
+            {
+                var WeaponItem = new NativeItem(wep.DisplayName);
+                WeaponItem.Activated += (sender, e) => DropWeapon(wep.Hash);
+                SideWep.Add(WeaponItem);
+            }
 
             // Civilian vehicles
             foreach (DropVehicle veh in Main.VehConfig.CivilianVehicles)
@@ -155,6 +188,15 @@ namespace JustCauseRebelDrops.Utilities
         {
             MainPool.HideAll();
             Main.CallVehicleDrop(ModelName);
+        }
+
+        /// <summary>
+        /// This serves the same purpose as DropVehicle does to vehicles
+        /// </summary>
+        private static void DropWeapon(PickupType Weapon)
+        {
+            MainPool.HideAll();
+            Main.CallWeaponDrop(Weapon);
         }
 
         /// <summary>

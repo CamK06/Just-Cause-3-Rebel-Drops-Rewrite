@@ -35,6 +35,9 @@ namespace JustCauseRebelDrops
             if (!File.Exists(Globals.WeaponFile))
             {
                 WeaponConfig weapons = new WeaponConfig();
+                weapons.HeavyWeapons.AddRange(Globals.DefaultHeavy);
+                weapons.PrimaryWeapons.AddRange(Globals.DefaultPrimary);
+                weapons.SideWeapons.AddRange(Globals.DefaultSecondary);
                 File.WriteAllText(Globals.WeaponFile, JsonConvert.SerializeObject(weapons, Formatting.Indented));
             }
             if (!File.Exists(Globals.HitSound)) Main.PlaySound = false;

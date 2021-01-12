@@ -8,7 +8,7 @@ namespace JustCauseRebelDrops.Classes
     {
         public string DisplayName { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
-        public WeaponHash Hash { get; set; }
+        public PickupType Hash { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
         public WeaponCategory Type { get; set; }
     }
