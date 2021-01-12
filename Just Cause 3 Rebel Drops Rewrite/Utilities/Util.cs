@@ -15,6 +15,7 @@ namespace JustCauseRebelDrops
         public static void VerifyFileStructure()
         {
             if (!Directory.Exists(Globals.ResourceDir)) Directory.CreateDirectory(Globals.ResourceDir);
+            if (!Directory.Exists(Globals.CustomWeaponDir)) Directory.CreateDirectory(Globals.CustomWeaponDir);
             if (!Directory.Exists(Globals.CustomVehicleDir)) Directory.CreateDirectory(Globals.CustomVehicleDir);
             if (!File.Exists(Globals.ConfigFile))
             {
@@ -42,7 +43,7 @@ namespace JustCauseRebelDrops
             }
             if (!File.Exists(Globals.HitSound)) Main.PlaySound = false;
             if (!File.Exists(Globals.CallSound)) Main.PlaySound = false;
-            if(!File.Exists(Globals.CustomVehicleDir + "\\CustomTemplate.json.n")) File.WriteAllText(Globals.CustomVehicleDir + "\\CustomTemplate.json.n", JsonConvert.SerializeObject(new CustomVehicleConfig()
+            if (!File.Exists(Globals.CustomVehicleDir + "\\CustomTemplate.json.n")) File.WriteAllText(Globals.CustomVehicleDir + "\\CustomTemplate.json.n", JsonConvert.SerializeObject(new CustomVehicleConfig()
             {
                 CategoryName = "Example",
                 Vehicles = new List<DropVehicle>()
@@ -55,7 +56,7 @@ namespace JustCauseRebelDrops
                     }
                 }
             }, Formatting.Indented));
-            if(!File.Exists(Globals.CustomVehicleDir + "\\CustomTemplate.xml.n"))
+            if (!File.Exists(Globals.CustomVehicleDir + "\\CustomTemplate.xml.n"))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(CustomVehicleConfig));
                 FileStream stream = new FileStream(Globals.CustomVehicleDir + "\\CustomTemplate.xml.n", FileMode.OpenOrCreate);
@@ -69,6 +70,38 @@ namespace JustCauseRebelDrops
                             DisplayName = "Mallard Example",
                             ModelName = "stunt",
                             Type = VehicleType.Plane
+                        }
+                    }
+                });
+                stream.Close();
+            }
+            if (!File.Exists(Globals.CustomWeaponDir + "\\CustomTemplate.json.n")) File.WriteAllText(Globals.CustomWeaponDir + "\\CustomTemplate.json.n", JsonConvert.SerializeObject(new CustomWeaponConfig()
+            {
+                CategoryName = "Example",
+                Weapons = new List<Weapon>()
+                {
+                    new Weapon()
+                    {
+                        DisplayName = "Carbine Rifle",
+                        Hash = GTA.PickupType.WeaponCarbineRifle,
+                        Type = WeaponCategory.Sidearm
+                    }
+                }
+            }, Formatting.Indented));
+            if (!File.Exists(Globals.CustomWeaponDir + "\\CustomTemplate.xml.n"))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(CustomWeaponConfig));
+                FileStream stream = new FileStream(Globals.CustomWeaponDir + "\\CustomTemplate.xml.n", FileMode.OpenOrCreate);
+                serializer.Serialize(stream, new CustomWeaponConfig()
+                {
+                    CategoryName = "Example",
+                    Weapons = new List<Weapon>()
+                    {
+                        new Weapon()
+                        {
+                            DisplayName = "Carbine Rifle",
+                            Hash = GTA.PickupType.WeaponCarbineRifle,
+                            Type = WeaponCategory.Sidearm
                         }
                     }
                 });

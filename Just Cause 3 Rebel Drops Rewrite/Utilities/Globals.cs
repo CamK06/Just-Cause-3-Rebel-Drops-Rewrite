@@ -10,6 +10,7 @@ namespace JustCauseRebelDrops
     {
         internal static string ResourceDir = "scripts\\JustCauseRebelDrops";
         internal static string CustomVehicleDir = ResourceDir + "\\CustomVehicles";
+        internal static string CustomWeaponDir = ResourceDir + "\\CustomWeapons";
         internal static string VehicleFile = ResourceDir + "\\vehicles.json";
         internal static string WeaponFile = ResourceDir + "\\weapons.json";
         internal static string ConfigFile = ResourceDir + "\\config.json";

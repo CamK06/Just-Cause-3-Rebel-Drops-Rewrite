@@ -4,7 +4,7 @@ using Newtonsoft.Json.Converters;
 
 namespace JustCauseRebelDrops.Classes
 {
-    internal class Weapon
+    public class Weapon
     {
         public string DisplayName { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
@@ -13,7 +13,7 @@ namespace JustCauseRebelDrops.Classes
         public WeaponCategory Type { get; set; }
     }
 
-    internal enum WeaponCategory
+    public enum WeaponCategory
     {
         Heavy, Sidearm, Primary
     }

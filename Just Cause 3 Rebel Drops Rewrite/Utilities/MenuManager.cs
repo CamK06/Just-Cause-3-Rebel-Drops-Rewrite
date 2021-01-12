@@ -94,6 +94,22 @@ namespace JustCauseRebelDrops.Utilities
                 SideWep.Add(WeaponItem);
             }
 
+            // Custom weapons
+            foreach(CustomWeaponConfig CustomWepConfig in Main.CustomWeaponConfigs)
+            {
+                NativeMenu CustomMenu = new NativeMenu(CustomWepConfig.CategoryName, CustomWepConfig.CategoryName);
+                WeaponsMenu.AddSubMenu(CustomMenu);
+
+                foreach(Classes.Weapon wep in CustomWepConfig.Weapons) 
+                {
+                    var WeaponItem = new NativeItem(wep.DisplayName);
+                    WeaponItem.Activated += (sender, e) => DropWeapon(wep.Hash);
+                    CustomMenu.Add(WeaponItem);
+                }
+
+                MainPool.Add(CustomMenu);
+            }
+
             // Civilian vehicles
             foreach (DropVehicle veh in Main.VehConfig.CivilianVehicles)
             {
@@ -149,7 +165,7 @@ namespace JustCauseRebelDrops.Utilities
             // Custom vehicles
             foreach(CustomVehicleConfig CustomVehConfig in Main.CustomVehicleConfigs)
             {
-                NativeMenu CustomMenu = new NativeMenu(CustomVehConfig.CategoryName);
+                NativeMenu CustomMenu = new NativeMenu(CustomVehConfig.CategoryName, CustomVehConfig.CategoryName);
                 VehicleMenu.AddSubMenu(CustomMenu);
 
                 foreach (DropVehicle veh in CustomVehConfig.Vehicles)
@@ -178,6 +194,8 @@ namespace JustCauseRebelDrops.Utilities
 
                     CustomVehicles.Add(veh);
                 }
+
+                MainPool.Add(CustomMenu);
             }
         }
 

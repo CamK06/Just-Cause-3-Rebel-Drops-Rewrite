@@ -20,6 +20,7 @@ namespace JustCauseRebelDrops
         internal static VehicleConfig VehConfig;
         internal static WeaponConfig WepConfig;
         internal static List<CustomVehicleConfig> CustomVehicleConfigs = new List<CustomVehicleConfig>();
+        internal static List<CustomWeaponConfig> CustomWeaponConfigs = new List<CustomWeaponConfig>();
 
         public Main()
         {
@@ -39,6 +40,10 @@ namespace JustCauseRebelDrops
                 CustomVehicleConfigs.Add(CustomVehicleConfig.LoadFromFile(file));
             foreach (string file in Directory.GetFiles(Globals.CustomVehicleDir, "*.xml"))
                 CustomVehicleConfigs.Add(CustomVehicleConfig.LoadFromFile(file));
+            foreach (string file in Directory.GetFiles(Globals.CustomWeaponDir, "*.json"))
+                CustomWeaponConfigs.Add(CustomWeaponConfig.LoadFromFile(file));
+            foreach (string file in Directory.GetFiles(Globals.CustomWeaponDir, "*.xml"))
+                CustomWeaponConfigs.Add(CustomWeaponConfig.LoadFromFile(file));
             Config = ModConfig.Load();
             MenuManager.Init();
 
@@ -56,7 +61,7 @@ namespace JustCauseRebelDrops
         public static void CallVehicleDrop(string VehicleModel)
         {
             // Drop setup
-            if(PlaySound) AudioManager.PlaySound(DropSound.call);
+            if (PlaySound) AudioManager.PlaySound(DropSound.call);
             Model VModel = new Model(VehicleModel);
             Model CModel = new Model(Config.PlaneModel);
             if (!VModel.IsValid || !CModel.IsValid)
@@ -132,15 +137,15 @@ namespace JustCauseRebelDrops
                 CargoPilot.Task.ClearAll();
                 CargoPlane.MarkAsNoLongerNeeded();
             }
-            if(PlaySound) AudioManager.StopSound(DropSound.hit);
+            if (PlaySound) AudioManager.StopSound(DropSound.hit);
         }
-        
+
         // This method can (and should) probably be merged with CallVehicleDrop to make a single CallDrop method
         // However, this works for now.
         public static void CallWeaponDrop(PickupType Weapon)
         {
             // Drop setup
-            if(PlaySound) AudioManager.PlaySound(DropSound.call);
+            if (PlaySound) AudioManager.PlaySound(DropSound.call);
             Model CModel = new Model(Config.PlaneModel);
             if (!CModel.IsValid)
             {
@@ -215,7 +220,7 @@ namespace JustCauseRebelDrops
                 CargoPilot.Task.ClearAll();
                 CargoPlane.MarkAsNoLongerNeeded();
             }
-            if(PlaySound) AudioManager.StopSound(DropSound.hit);
+            if (PlaySound) AudioManager.StopSound(DropSound.hit);
         }
 
         private void OnTick(object sender, EventArgs e)

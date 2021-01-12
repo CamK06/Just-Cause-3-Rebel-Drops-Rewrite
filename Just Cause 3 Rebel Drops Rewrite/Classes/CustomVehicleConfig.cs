@@ -14,7 +14,7 @@ namespace JustCauseRebelDrops.Classes
         /// Loads a custom vehicle config file
         /// </summary>
         /// <param name="FileToLoad">The file to load from</param>
-        /// <returns>CustomVehicleConfig from json</returns>
+        /// <returns>CustomVehicleConfig</returns>
         public static CustomVehicleConfig LoadFromFile(string FileToLoad)
         {
             if (FileToLoad.ToLower().EndsWith(".json")) return JsonConvert.DeserializeObject<CustomVehicleConfig>(File.ReadAllText(FileToLoad));
