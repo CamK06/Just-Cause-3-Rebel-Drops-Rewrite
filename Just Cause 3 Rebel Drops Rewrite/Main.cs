@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+
 using GTA;
 using GTA.Math;
 using GTA.Native;
 using GTA.UI;
+
 using JustCauseRebelDrops.Classes;
 using JustCauseRebelDrops.Utilities;
-using NativeUI;
-using Newtonsoft.Json;
 
 namespace JustCauseRebelDrops
 {
@@ -136,7 +135,7 @@ namespace JustCauseRebelDrops
 
         private void OnTick(object sender, EventArgs e)
         {
-            MenuManager.MainPool.ProcessMenus();
+            MenuManager.MainPool.Process();
         }
     }
 }

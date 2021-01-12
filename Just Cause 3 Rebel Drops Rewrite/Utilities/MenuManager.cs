@@ -1,30 +1,35 @@
-﻿using GTA;
-using GTA.UI;
-using JustCauseRebelDrops.Classes;
-using NativeUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using GTA;
+using GTA.UI;
+using LemonUI;
+using LemonUI.Menus;
+
+using JustCauseRebelDrops.Classes;
+using LemonUI.Elements;
+using Screen = GTA.UI.Screen;
+
 namespace JustCauseRebelDrops.Utilities
 {
     internal class MenuManager
     {
-        internal static MenuPool MainPool = new MenuPool();
+        internal static ObjectPool MainPool = new ObjectPool();
 
-        static UIMenu MainMenu = new UIMenu("Rebel Drops", "Select a drop type");
-        static UIMenu VehicleMenu = null;
-        static UIMenu WeaponsMenu = null;
-        static UIMenu MilitaryMenu = null;
-        static UIMenu CivilianMenu = null;
-        static UIMenu CivAir = null;
-        static UIMenu CivLand = null;
-        static UIMenu CivSea = null;
-        static UIMenu MilAir = null;
-        static UIMenu MilLand = null;
-        static UIMenu MilSea = null;
+        static NativeMenu MainMenu = new NativeMenu("Rebel Drops");
+        static NativeMenu VehicleMenu = new NativeMenu("Vehicles", "Vehicles");
+        static NativeMenu WeaponsMenu = new NativeMenu("Weapons", "Weapons");
+        static NativeMenu MilitaryMenu = new NativeMenu("Military Vehicles", "Military");
+        static NativeMenu CivilianMenu = new NativeMenu("Civilian Vehicles", "Civilian");
+        static NativeMenu CivAir = new NativeMenu("Air", "Air");
+        static NativeMenu CivLand = new NativeMenu("Land", "Land");
+        static NativeMenu CivSea = new NativeMenu("Sea", "Sea");
+        static NativeMenu MilAir = new NativeMenu("Air", "Air");
+        static NativeMenu MilLand = new NativeMenu("Land", "Land");
+        static NativeMenu MilSea = new NativeMenu("Sea", "Sea");
         static List<DropVehicle> CustomVehicles = new List<DropVehicle>();
 
         /// <summary>
@@ -32,20 +37,29 @@ namespace JustCauseRebelDrops.Utilities
         /// </summary>
         public static void Init()
         {
+            WeaponsMenu.Add(new NativeItem("Weapons are not implemented yet."));
+            CivilianMenu.AddSubMenu(CivAir);
+            CivilianMenu.AddSubMenu(CivLand);
+            CivilianMenu.AddSubMenu(CivSea);
+            MilitaryMenu.AddSubMenu(MilAir);
+            MilitaryMenu.AddSubMenu(MilLand);
+            MilitaryMenu.AddSubMenu(MilSea);
+            VehicleMenu.AddSubMenu(CivilianMenu);
+            VehicleMenu.AddSubMenu(MilitaryMenu);
+            MainMenu.AddSubMenu(VehicleMenu);
+            MainMenu.AddSubMenu(WeaponsMenu);
+            
+            MainPool.Add(CivAir);
+            MainPool.Add(CivLand);
+            MainPool.Add(CivSea);
+            MainPool.Add(MilAir);
+            MainPool.Add(MilLand);
+            MainPool.Add(MilSea);
+            MainPool.Add(CivilianMenu);
+            MainPool.Add(MilitaryMenu);
+            MainPool.Add(VehicleMenu);
+            MainPool.Add(WeaponsMenu);
             MainPool.Add(MainMenu);
-            VehicleMenu = MainPool.AddSubMenu(MainMenu, "Vehicles");
-            WeaponsMenu = MainPool.AddSubMenu(MainMenu, "Weapons");
-            WeaponsMenu.AddItem(new UIMenuItem("Weapon drops are currently not implemented."));
-
-            CivilianMenu = MainPool.AddSubMenu(VehicleMenu, "Civilian Vehicles");
-            MilitaryMenu = MainPool.AddSubMenu(VehicleMenu, "Military Vehicles");
-
-            CivAir = MainPool.AddSubMenu(CivilianMenu, "Air");
-            CivLand = MainPool.AddSubMenu(CivilianMenu, "Land");
-            CivSea = MainPool.AddSubMenu(CivilianMenu, "Sea");
-            MilAir = MainPool.AddSubMenu(MilitaryMenu, "Air");
-            MilLand = MainPool.AddSubMenu(MilitaryMenu, "Land");
-            MilSea = MainPool.AddSubMenu(MilitaryMenu, "Sea");
 
             // Civilian vehicles
             foreach (DropVehicle veh in Main.VehConfig.CivilianVehicles)
@@ -54,21 +68,21 @@ namespace JustCauseRebelDrops.Utilities
                 {
                     case VehicleType.Heli:
                     case VehicleType.Plane:
-                        var VehicleItem = new UIMenuItem(veh.DisplayName);
-                        VehicleItem.Activated += ItemSelect;
-                        CivAir.AddItem(VehicleItem);
+                        var VehicleItem = new NativeItem(veh.DisplayName);
+                        VehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                        CivAir.Add(VehicleItem);
                         break;
 
                     case VehicleType.Land:
-                        var LandVehicleItem = new UIMenuItem(veh.DisplayName);
-                        LandVehicleItem.Activated += ItemSelect;
-                        CivLand.AddItem(LandVehicleItem);
+                        var LandVehicleItem = new NativeItem(veh.DisplayName);
+                        LandVehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                        CivLand.Add(LandVehicleItem);
                         break;
 
                     case VehicleType.Sea:
-                        var SeaVehicleItem = new UIMenuItem(veh.DisplayName);
-                        SeaVehicleItem.Activated += ItemSelect;
-                        CivSea.AddItem(SeaVehicleItem);
+                        var SeaVehicleItem = new NativeItem(veh.DisplayName);
+                        SeaVehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                        CivSea.Add(SeaVehicleItem);
                         break;
                 }
             }
@@ -80,21 +94,21 @@ namespace JustCauseRebelDrops.Utilities
                 {
                     case VehicleType.Heli:
                     case VehicleType.Plane:
-                        var VehicleItem = new UIMenuItem(veh.DisplayName);
-                        VehicleItem.Activated += ItemSelect;
-                        MilAir.AddItem(VehicleItem);
+                        var VehicleItem = new NativeItem(veh.DisplayName);
+                        VehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                        MilAir.Add(VehicleItem);
                         break;
 
                     case VehicleType.Land:
-                        var LandVehicleItem = new UIMenuItem(veh.DisplayName);
-                        LandVehicleItem.Activated += ItemSelect;
-                        MilLand.AddItem(LandVehicleItem);
+                        var LandVehicleItem = new NativeItem(veh.DisplayName);
+                        LandVehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                        MilLand.Add(LandVehicleItem);
                         break;
 
                     case VehicleType.Sea:
-                        var SeaVehicleItem = new UIMenuItem(veh.DisplayName);
-                        SeaVehicleItem.Activated += ItemSelect;
-                        MilSea.AddItem(SeaVehicleItem);
+                        var SeaVehicleItem = new NativeItem(veh.DisplayName);
+                        SeaVehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                        MilSea.Add(SeaVehicleItem);
                         break;
                 }
             }
@@ -102,7 +116,8 @@ namespace JustCauseRebelDrops.Utilities
             // Custom vehicles
             foreach(CustomVehicleConfig CustomVehConfig in Main.CustomVehicleConfigs)
             {
-                UIMenu CustomMenu = MainPool.AddSubMenu(VehicleMenu, CustomVehConfig.CategoryName);
+                NativeMenu CustomMenu = new NativeMenu(CustomVehConfig.CategoryName);
+                VehicleMenu.AddSubMenu(CustomMenu);
 
                 foreach (DropVehicle veh in CustomVehConfig.Vehicles)
                 {
@@ -110,44 +125,37 @@ namespace JustCauseRebelDrops.Utilities
                     {
                         case VehicleType.Heli:
                         case VehicleType.Plane:
-                            var VehicleItem = new UIMenuItem(veh.DisplayName);
-                            VehicleItem.Activated += ItemSelect;
-                            CustomMenu.AddItem(VehicleItem);
+                            var VehicleItem = new NativeItem(veh.DisplayName);
+                            VehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                            CustomMenu.Add(VehicleItem);
                             break;
 
                         case VehicleType.Land:
-                            var LandVehicleItem = new UIMenuItem(veh.DisplayName);
-                            LandVehicleItem.Activated += ItemSelect;
-                            CustomMenu.AddItem(LandVehicleItem);
+                            var LandVehicleItem = new NativeItem(veh.DisplayName);
+                            LandVehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                            CustomMenu.Add(LandVehicleItem);
                             break;
 
                         case VehicleType.Sea:
-                            var SeaVehicleItem = new UIMenuItem(veh.DisplayName);
-                            SeaVehicleItem.Activated += ItemSelect;
-                            CustomMenu.AddItem(SeaVehicleItem);
+                            var SeaVehicleItem = new NativeItem(veh.DisplayName);
+                            SeaVehicleItem.Activated += (sender, e) => DropVehicle(veh.ModelName);
+                            CustomMenu.Add(SeaVehicleItem);
                             break;
                     }
 
                     CustomVehicles.Add(veh);
                 }
             }
-
-            MainPool.RefreshIndex();
         }
 
-        private static void ItemSelect(UIMenu Menu, UIMenuItem Item)
+        /// <summary>
+        /// Drops a vehicle, the reason we don't just directly call "CallVehicleDrop" is so we can close all menus
+        /// </summary>
+        private static void DropVehicle(string ModelName)
         {
-            DropVehicle VehicleToDrop = null;
-            VehicleToDrop = Main.VehConfig.CivilianVehicles.FirstOrDefault(x => x.DisplayName.ToLower() == Item.Text.ToLower());
-            if (VehicleToDrop == null) VehicleToDrop = Main.VehConfig.MilitaryVehicles.FirstOrDefault(x => x.DisplayName.ToLower() == Item.Text.ToLower());
-            if (VehicleToDrop == null) VehicleToDrop = CustomVehicles.FirstOrDefault(x => x.DisplayName.ToLower() == Item.Text.ToLower());
-            if (VehicleToDrop == null) return;
-
-            MainPool.CloseAllMenus();
-            Main.CallVehicleDrop(VehicleToDrop.ModelName);
+            MainPool.HideAll();
+            Main.CallVehicleDrop(ModelName);
         }
-
-
 
         /// <summary>
         /// Shows the main menu

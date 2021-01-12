@@ -11,22 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LemonUI.SHVDN3" Version="1.0.0" />
+    <PackageReference Include="NAudio" Version="1.10.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="ScriptHookVDotNet3" Version="3.0.2" />
+    <PackageReference Include="ScriptHookVDotNet3" Version="3.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="NativeUI">
-      <HintPath>..\..\..\..\C# Dependencies\NativeUI.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio">
-      <HintPath>..\..\..\..\C# Dependencies\NAudio.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y /d &quot;$(TargetPath)&quot; &quot;C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts&quot;" />
   </Target>
 
 </Project>
